@@ -140,7 +140,9 @@ class _loginScreenState extends State<loginScreen> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(context, '/reset');
+                        },
                         child: Container(
                           child: Text(
                             'Forgot Password',

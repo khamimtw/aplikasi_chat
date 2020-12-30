@@ -28,7 +28,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(140, 180, 200, 100),
+      backgroundColor: Color.fromRGBO(150, 160, 200, 100),
       body: Center(
         child: Image.asset(
           "images/adadad.png",
