@@ -172,7 +172,7 @@ class _loginScreenState extends State<loginScreen> {
                         child: RaisedButton(
                           onPressed: () {
                             if (_formKey.currentState.validate()) {
-                              Navigator.pushNamed(context, '/');
+                              Navigator.pushNamed(context, '/dashboard');
                             }
                             return false;
                           },
