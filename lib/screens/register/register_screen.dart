@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:aplikasi_chat/widgets/customtextfield.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -76,28 +75,28 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 SizedBox(
                   height: 65,
                 ),
-                CustomTextField(
+                _buildTextField(
                   hint: 'Username',
                   issecured: false,
                 ),
                 SizedBox(
                   height: 15,
                 ),
-                CustomTextField(
+                _buildTextField(
                   hint: 'Email',
                   issecured: false,
                 ),
                 SizedBox(
                   height: 15,
                 ),
-                CustomTextField(
+                _buildTextField(
                   hint: 'Password',
                   issecured: false,
                 ),
                 SizedBox(
                   height: 15,
                 ),
-                CustomTextField(
+                _buildTextField(
                   hint: 'Confirm Password',
                   issecured: true,
                 ),
@@ -128,5 +127,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
       ),
     );
+  }
+
+  Widget _buildTextField({String hint, bool issecured}) {
+    return Padding(
+        padding: const EdgeInsets.only(left: 25, right: 25),
+        child: TextFormField(
+          obscureText: issecured,
+          cursorColor: Colors.black,
+          style: TextStyle(color: Colors.black),
+          decoration: InputDecoration(
+            hintText: hint,
+            hintStyle: TextStyle(
+                fontSize: 14,
+                letterSpacing: 1,
+                color: Colors.black54,
+                fontWeight: FontWeight.w200),
+          ),
+        ));
   }
 }
