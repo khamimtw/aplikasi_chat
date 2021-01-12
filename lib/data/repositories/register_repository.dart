@@ -20,13 +20,12 @@ class RegisterRepository {
         '$apiUrl/auth/register',
         body: body,
       );
+
       final dynamic registerResponse = jsonDecode(response.body);
+
       if (registerResponse['error']) {
         return CustomError.fromJson(registerResponse);
       }
-
-      await CustomSharedPreferences.setString(
-          'token', registerResponse['token']);
 
       final User user = User.fromJson(registerResponse['user']);
       return user;
