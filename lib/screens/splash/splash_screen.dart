@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:aplikasi_chat/login.dart';
+import 'package:aplikasi_chat/screens/login/login_screen.dart';
 import 'dart:async';
 
-class SplashScreenPage extends StatefulWidget {
+class SplashScreen extends StatefulWidget {
   @override
-  _SplashScreenPageState createState() => _SplashScreenPageState();
+  _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreenPageState extends State<SplashScreenPage> {
+class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
@@ -19,7 +19,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
     return Timer(duration, () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (_) {
-          return loginScreen();
+          return LoginScreen();
         }),
       );
     });

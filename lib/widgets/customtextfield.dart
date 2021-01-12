@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class CustomTextField extends StatelessWidget {
   String hint;
   bool issecured;
@@ -22,7 +23,7 @@ class CustomTextField extends StatelessWidget {
             hintText: hint,
             hintStyle: TextStyle(
                 fontSize: 14,
-                letterSpacing: 1, 
+                letterSpacing: 1,
                 color: Colors.black54,
                 fontWeight: FontWeight.w200),
             //filled: true,

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-class addScreen extends StatefulWidget {
+class AddFriendScreen extends StatefulWidget {
   @override
-  _AddScreenState createState() => _AddScreenState();
+  _AddFriendScreenState createState() => _AddFriendScreenState();
 }
 
-class _AddScreenState extends State<addScreen> {
+class _AddFriendScreenState extends State<AddFriendScreen> {
   final myFriendController = TextEditingController();
   String friend;
   final _formKey = GlobalKey<FormState>();
 
   @override
-  Widget build(BuildContext) {
+  Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
@@ -121,7 +121,7 @@ class _AddScreenState extends State<addScreen> {
                       child: RaisedButton(
                         onPressed: () {
                           if (_formKey.currentState.validate()) {
-                            Navigator.pushNamed(context, '/editUs');
+                            Navigator.pushNamed(context, 'change_username');
                           }
                           return false;
                         },

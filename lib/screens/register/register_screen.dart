@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:aplikasi_chat/customwidget/customtextfield.dart';
+import 'package:aplikasi_chat/widgets/customtextfield.dart';
 
-class SignUpScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
+  @override
+  _RegisterScreenState createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,7 +112,7 @@ class SignUpScreen extends StatelessWidget {
                       height: 50,
                       child: RaisedButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, '/login');
+                          Navigator.pushNamed(context, 'add_friend');
                         },
                         child: Text(
                           'Sign up',

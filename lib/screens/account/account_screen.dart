@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class accountScreen extends StatefulWidget {
+class AccountScreen extends StatefulWidget {
   @override
-  _accountScreenState createState() => _accountScreenState();
+  _AccountScreenState createState() => _AccountScreenState();
 }
 
-class _accountScreenState extends State<accountScreen> {
+class _AccountScreenState extends State<AccountScreen> {
   final myUsernameController = TextEditingController();
   final myPasswordController = TextEditingController();
   final myEmailController = TextEditingController();
@@ -62,7 +62,7 @@ class _accountScreenState extends State<accountScreen> {
                       suffixIcon: IconButton(
                         icon: Icon(Icons.edit),
                         onPressed: () {
-                          Navigator.pushNamed(context, '/editUs');
+                          Navigator.pushNamed(context, 'change_username');
                         },
                       ),
                     ),
@@ -90,7 +90,7 @@ class _accountScreenState extends State<accountScreen> {
                       suffixIcon: IconButton(
                         icon: Icon(Icons.edit),
                         onPressed: () {
-                          Navigator.pushNamed(context, '/editUs');
+                          Navigator.pushNamed(context, 'change_username');
                         },
                       ),
                     ),
@@ -113,7 +113,7 @@ class _accountScreenState extends State<accountScreen> {
                       suffixIcon: IconButton(
                         icon: Icon(Icons.edit),
                         onPressed: () {
-                          Navigator.pushNamed(context, '/editPass');
+                          Navigator.pushNamed(context, 'change_password');
                         },
                       ),
                     ),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class editPassScreen extends StatefulWidget {
+class ChangePasswordScreen extends StatefulWidget {
   @override
-  _editPassScreenState createState() => _editPassScreenState();
+  _ChangePasswordScreenState createState() => _ChangePasswordScreenState();
 }
 
-class _editPassScreenState extends State<editPassScreen> {
+class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   final myCurrentPassController = TextEditingController();
   final myPasswordController = TextEditingController();
   String nCurrent, nPassword;
@@ -100,9 +100,10 @@ class _editPassScreenState extends State<editPassScreen> {
                 Padding(
                   padding: const EdgeInsets.only(left: 250, right: 0),
                   child: FloatingActionButton(
+                    onPressed: () {},
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, '/account');
+                        Navigator.pushNamed(context, 'account');
                       },
                       child: const Icon(Icons.bookmark),
                     ),

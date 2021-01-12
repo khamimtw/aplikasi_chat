@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class Dashboard extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
   @override
-  _DashboardState createState() => _DashboardState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _DashboardState extends State<Dashboard> {
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -147,7 +147,7 @@ class _DashboardState extends State<Dashboard> {
                 iconSize: 35,
                 color: Colors.blueGrey,
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/Settings');
+                  Navigator.pushReplacementNamed(context, 'setting');
                 },
               ),
             ],

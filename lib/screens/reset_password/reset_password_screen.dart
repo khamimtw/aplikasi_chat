@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class ResetScreen extends StatefulWidget {
+class ResetPasswordScreen extends StatefulWidget {
   @override
-  _resetScreenState createState() => _resetScreenState();
+  _ResetPasswordScreenState createState() => _ResetPasswordScreenState();
 }
 
-class _resetScreenState extends State<ResetScreen> {
+class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   final myUsernameController = TextEditingController();
 
   String nUsername;
@@ -120,7 +120,7 @@ class _resetScreenState extends State<ResetScreen> {
                         child: RaisedButton(
                           onPressed: () {
                             if (_formKey.currentState.validate()) {
-                              Navigator.pushNamed(context, '/add');
+                              Navigator.pushNamed(context, 'add_friend');
                             }
                             return false;
                           },

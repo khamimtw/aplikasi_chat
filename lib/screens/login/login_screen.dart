@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
-class loginScreen extends StatefulWidget {
+
+class LoginScreen extends StatefulWidget {
   @override
-  _loginScreenState createState() => _loginScreenState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _loginScreenState extends State<loginScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   final myUsernameController = TextEditingController();
   final myPasswordController = TextEditingController();
   String nUsername, nPassword;
@@ -141,7 +142,7 @@ class _loginScreenState extends State<loginScreen> {
                     children: <Widget>[
                       GestureDetector(
                         onTap: () {
-                          Navigator.pushNamed(context, '/reset');
+                          Navigator.pushNamed(context, 'reset_password');
                         },
                         child: Container(
                           child: Text(
@@ -172,7 +173,7 @@ class _loginScreenState extends State<loginScreen> {
                         child: RaisedButton(
                           onPressed: () {
                             if (_formKey.currentState.validate()) {
-                              Navigator.pushNamed(context, '/dashboard');
+                              Navigator.pushNamed(context, 'home');
                             }
                             return false;
                           },
@@ -202,7 +203,7 @@ class _loginScreenState extends State<loginScreen> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.pushNamed(context, '/signup');
+                          Navigator.pushNamed(context, 'register');
                         },
                         child: Text(
                           'Sign up, it is free!',

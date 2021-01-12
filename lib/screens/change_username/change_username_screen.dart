@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class editUsrnmScreen extends StatefulWidget {
+class ChangeUsernameScreen extends StatefulWidget {
   @override
-  _editUsrnmScreenState createState() => _editUsrnmScreenState();
+  _ChangeUsernameScreenState createState() => _ChangeUsernameScreenState();
 }
 
-class _editUsrnmScreenState extends State<editUsrnmScreen> {
+class _ChangeUsernameScreenState extends State<ChangeUsernameScreen> {
   final myUsernameController = TextEditingController();
   final myPasswordController = TextEditingController();
   String nUsername, nPassword;
@@ -99,9 +99,10 @@ class _editUsrnmScreenState extends State<editUsrnmScreen> {
                 Padding(
                   padding: const EdgeInsets.only(left: 250, right: 0),
                   child: FloatingActionButton(
+                    onPressed: () {},
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, '/account');
+                        Navigator.pushNamed(context, 'account');
                       },
                       child: const Icon(Icons.bookmark),
                     ),

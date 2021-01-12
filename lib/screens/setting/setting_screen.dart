@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
-class SettingsPage extends StatelessWidget {
+class SettingScreen extends StatefulWidget {
+  @override
+  _SettingScreenState createState() => _SettingScreenState();
+}
+
+class _SettingScreenState extends State<SettingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,7 +109,7 @@ class SettingsPage extends StatelessWidget {
                 iconSize: 35,
                 color: Colors.blueGrey,
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/');
+                  Navigator.pushReplacementNamed(context, 'home');
                 },
               ),
               IconButton(
