@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../../size_config.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -16,12 +16,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
+        width: SizeConfig.screenWidth,
+        height: SizeConfig.screenHeight,
         decoration: BoxDecoration(
-          //image: DecorationImage(
-          //  image: AssetImage('images/adadad.png'), fit: BoxFit.cover),
           gradient: LinearGradient(
               colors: [Color.fromRGBO(104, 153, 255, 100), Colors.white],
               begin: Alignment.bottomCenter,
@@ -212,7 +213,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               fontWeight: FontWeight.w500,
                               color: Colors.black),
                         ),
-                      )
+                      ),
                     ],
                   )
                 ],
