@@ -42,11 +42,13 @@ class LoginController extends StateControl {
     String password = this.passwordController.value.text;
     var loginResponse = await _loginRepository.login(username, password);
 
-    if (loginResponse is CustomError) {
-      showAlertDialog(loginResponse.message);
-    } else if (loginResponse is User) {
-      Navigator.of(context).pushReplacementNamed('home');
-    }
+    Navigator.of(context).pushReplacementNamed('home');
+
+    // if (loginResponse is CustomError) {
+    //   showAlertDialog(loginResponse.message);
+    // } else if (loginResponse is User) {
+    //   Navigator.of(context).pushReplacementNamed('home');
+    // }
     _formSubmitting = false;
     notifyListeners();
   }

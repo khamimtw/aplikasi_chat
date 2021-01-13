@@ -1,4 +1,5 @@
 import 'package:aplikasi_chat/screens/login/login_controller.dart';
+import 'package:aplikasi_chat/widgets/auth.dart';
 import 'package:flutter/material.dart';
 import '../../size_config.dart';
 
@@ -35,19 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: SingleChildScrollView(
                 child: Stack(
                   children: [
-                    Container(
-                      width: SizeConfig.screenWidth,
-                      height: SizeConfig.screenHeight,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            colors: [
-                              Color.fromRGBO(104, 153, 255, 100),
-                              Colors.white
-                            ],
-                            begin: Alignment.bottomCenter,
-                            end: Alignment.topCenter),
-                      ),
-                    ),
+                    buildGradientBackgroundAuth(),
                     Padding(
                       padding: EdgeInsets.symmetric(
                           horizontal: getProportionateScreenWidth(25),
@@ -57,11 +46,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           Image.asset(
                             "images/1.png",
                             alignment: Alignment.centerRight,
-                            width: 350,
+                            width: SizeConfig.screenWidth,
                             height: 150,
                           ),
                           SizedBox(
-                            height: 20,
+                            height: 25,
                           ),
                           Row(
                             children: <Widget>[
@@ -90,12 +79,12 @@ class _LoginScreenState extends State<LoginScreen> {
                           SizedBox(
                             height: 25,
                           ),
-                          _buildTextFieldWidget(
+                          buildTextFieldAuth(
                               'Username', _loginController.usernameController),
                           SizedBox(
                             height: 20,
                           ),
-                          _buildTextFieldWidget(
+                          buildTextFieldAuth(
                               'Password', _loginController.passwordController,
                               obscureText: true),
                           SizedBox(
@@ -118,11 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           SizedBox(
                             height: 50,
                           ),
-                          Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: getProportionateScreenWidth(50)),
-                              child: _buildButtonWidget(
-                                  'Login', _loginController.submitForm)),
+                          buildButtonAuth('Login', _loginController.submitForm),
                           SizedBox(
                             height: 50,
                           ),
@@ -161,42 +146,5 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           );
         });
-  }
-
-  Widget _buildTextFieldWidget(
-      String hintText, TextEditingController controller,
-      {bool obscureText = false}) {
-    return TextField(
-      cursorColor: Colors.black,
-      style: TextStyle(color: Colors.black),
-      maxLength: 50,
-      maxLengthEnforced: true,
-      controller: controller,
-      obscureText: obscureText,
-      decoration: InputDecoration(
-        hintText: '  $hintText',
-        hintStyle: TextStyle(
-            fontSize: 15,
-            letterSpacing: 1.5,
-            color: Colors.black54,
-            fontWeight: FontWeight.w900),
-      ),
-    );
-  }
-
-  Widget _buildButtonWidget(String title, Function onTap) {
-    return ButtonTheme(
-        buttonColor: Color.fromRGBO(50, 66, 120, 100),
-        minWidth: MediaQuery.of(context).size.width,
-        height: 45,
-        child: RaisedButton(
-          onPressed: onTap,
-          child: Text(
-            title,
-            style: TextStyle(color: Colors.white, fontSize: 20),
-          ),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-        ));
   }
 }
