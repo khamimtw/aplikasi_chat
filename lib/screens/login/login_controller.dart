@@ -41,6 +41,7 @@ class LoginController extends StateControl {
     String username = this.usernameController.value.text;
     String password = this.passwordController.value.text;
     var loginResponse = await _loginRepository.login(username, password);
+
     if (loginResponse is CustomError) {
       showAlertDialog(loginResponse.message);
     } else if (loginResponse is User) {

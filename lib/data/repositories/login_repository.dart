@@ -14,8 +14,8 @@ class LoginRepository {
     try {
       var body = jsonEncode({'username': username, 'password': password});
       var response = await http.post('$apiUrl/auth/login', body: body);
+      print('RESPONSE' + response.body);
       final dynamic loginResponse = jsonDecode(response.body);
-
       if (loginResponse['error']) {
         return CustomError.fromJson(loginResponse);
       }
@@ -25,6 +25,7 @@ class LoginRepository {
       await CustomSharedPreferences.setString('user', user.toString());
       return user;
     } catch (e) {
+      print(e);
       return CustomError(
         error: true,
         message: e.toString(),

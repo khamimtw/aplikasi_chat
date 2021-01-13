@@ -1,1 +1,1 @@
-final String apiUrl = 'https://sischat.reach.my.id';
+final String apiUrl = 'https://api-sischat.reach.my.id';

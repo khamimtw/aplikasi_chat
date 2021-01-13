@@ -1,3 +1,4 @@
+import 'package:aplikasi_chat/screens/register/register_controller.dart';
 import 'package:aplikasi_chat/size_config.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,15 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+
+  RegisterController _registerController;
+
+  @override
+  void initState() {
+    _registerController = RegisterController(context: context);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -76,26 +86,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         _buildTextFieldWidget(
                           'Username',
+                          _registerController.usernameController
                         ),
                         SizedBox(
                           height: 20,
                         ),
                         _buildTextFieldWidget(
                           'Email',
+                          _registerController.emailController
                         ),
                         SizedBox(
                           height: 20,
                         ),
                         _buildTextFieldWidget(
                           'Password',
+                          _registerController.passwordController,
                           obscureText: true,
                         ),
                         SizedBox(
                           height: 20,
-                        ),
-                        _buildTextFieldWidget(
-                          'Password Confirmation',
-                          obscureText: true,
                         ),
                         SizedBox(
                           height: 50,
@@ -143,22 +152,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  Widget _buildTextFieldWidget(String hint, {bool obscureText = false}) {
-    return Padding(
-        padding: const EdgeInsets.only(left: 25, right: 25),
-        child: TextFormField(
-          obscureText: obscureText,
-          cursorColor: Colors.black,
-          style: TextStyle(color: Colors.black),
-          decoration: InputDecoration(
-            hintText: hint,
-            hintStyle: TextStyle(
-                fontSize: 14,
-                letterSpacing: 1,
-                color: Colors.black54,
-                fontWeight: FontWeight.w200),
-          ),
-        ));
+  Widget _buildTextFieldWidget(
+      String hintText, TextEditingController controller,
+      {bool obscureText = false}) {
+    return TextField(
+      cursorColor: Colors.black,
+      style: TextStyle(color: Colors.black),
+      maxLength: 50,
+      maxLengthEnforced: true,
+      controller: controller,
+      obscureText: obscureText,
+      decoration: InputDecoration(
+        hintText: '  $hintText',
+        hintStyle: TextStyle(
+            fontSize: 15,
+            letterSpacing: 1.5,
+            color: Colors.black54,
+            fontWeight: FontWeight.w900),
+    
+    ));
   }
 
   Widget _buildButtonWidget(String title, Function onTap) {
