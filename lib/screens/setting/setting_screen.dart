@@ -118,7 +118,9 @@ class _SettingScreenState extends State<SettingScreen> {
                 icon: Icon(Icons.settings),
                 iconSize: 35,
                 color: Colors.blueGrey,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, '/profile');
+                },
               ),
             ],
           ),

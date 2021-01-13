@@ -41,7 +41,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       size: 45,
                     ),
                     padding: EdgeInsets.only(right: 40),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, '/chats');
+                    },
                   )
                 ],
               ),
