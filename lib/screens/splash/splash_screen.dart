@@ -1,3 +1,7 @@
+import 'package:aplikasi_chat/screens/account/account_screen.dart';
+import 'package:aplikasi_chat/screens/add_friend/add_friend_screen.dart';
+import 'package:aplikasi_chat/screens/change_password/change_password_screen.dart';
+import 'package:aplikasi_chat/screens/change_username/change_username_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:aplikasi_chat/screens/login/login_screen.dart';
 import 'dart:async';
@@ -19,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Timer(duration, () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (_) {
-          return LoginScreen();
+          return AddFriendScreen();
         }),
       );
     });

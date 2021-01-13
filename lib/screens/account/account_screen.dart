@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AccountScreen extends StatefulWidget {
+  static final String routeName = '/account';
+
   @override
   _AccountScreenState createState() => _AccountScreenState();
 }

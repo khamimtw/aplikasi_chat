@@ -11,14 +11,14 @@ import 'package:aplikasi_chat/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 final Map<String, WidgetBuilder> routes = {
-  'account': (context) => AccountScreen(),
-  'add_friend': (context) => AddFriendScreen(),
-  'change_password': (context) => ChangePasswordScreen(),
-  'change_username': (context) => ChangeUsernameScreen(),
-  'home': (context) => HomeScreen(),
-  'login': (context) => LoginScreen(),
-  'register': (context) => RegisterScreen(),
-  'reset_password': (context) => ResetPasswordScreen(),
-  'setting': (context) => SettingScreen(),
-  'splash': (context) => SplashScreen(),
+  '/': (context) => SplashScreen(),
+  LoginScreen.routeName: (context) => LoginScreen(),
+  RegisterScreen.routeName: (context) => RegisterScreen(),
+  ResetPasswordScreen.routeName: (context) => ResetPasswordScreen(),
+  HomeScreen.routeName: (context) => HomeScreen(),
+  AccountScreen.routeName: (context) => AccountScreen(),
+  AddFriendScreen.routeName: (context) => AddFriendScreen(),
+  ChangePasswordScreen.routeName: (context) => ChangePasswordScreen(),
+  ChangeUsernameScreen.routeName: (context) => ChangeUsernameScreen(),
+  SettingScreen.routeName: (context) => SettingScreen(),
 };

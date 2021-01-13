@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
+  static final String routeName = '/change_password';
+
   @override
   _ChangePasswordScreenState createState() => _ChangePasswordScreenState();
 }
@@ -29,7 +31,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 AppBar(
                   backgroundColor: Colors.grey[200],
                   title: Text(
-                    "Edit Username",
+                    "Change Password",
                     style: TextStyle(
                       color: Colors.black,
                     ),
@@ -103,7 +105,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                     onPressed: () {},
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, 'account');
+                        Navigator.pushNamed(context, '/account');
                       },
                       child: const Icon(Icons.bookmark),
                     ),

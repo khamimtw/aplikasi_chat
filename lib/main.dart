@@ -6,7 +6,7 @@ void main() => runApp(
         title: 'ZIPPO',
         theme: ThemeData(fontFamily: 'Proxima Nova'),
         debugShowCheckedModeBanner: false,
-        initialRoute: 'splash',
+        initialRoute: '/',
         routes: routes,
       ),
     ); // Material App

@@ -1,12 +1,12 @@
 import 'package:aplikasi_chat/size_config.dart';
 import 'package:flutter/material.dart';
 
-Widget buildTextFieldAuth(String hintText, TextEditingController controller,
-    {bool obscureText = false}) {
+Widget buildTextFieldAuth(String hintText,
+    {bool obscureText = false, TextEditingController controller}) {
   return TextField(
     cursorColor: Colors.black,
     style: TextStyle(color: Colors.black),
-    controller: controller,
+    controller: controller ?? null,
     obscureText: obscureText,
     decoration: InputDecoration(
       counter: Offstage(),

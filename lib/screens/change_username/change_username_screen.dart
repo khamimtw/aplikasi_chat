@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ChangeUsernameScreen extends StatefulWidget {
+  static final String routeName = '/change_username';
+
   @override
   _ChangeUsernameScreenState createState() => _ChangeUsernameScreenState();
 }
@@ -29,7 +31,7 @@ class _ChangeUsernameScreenState extends State<ChangeUsernameScreen> {
                 AppBar(
                   backgroundColor: Colors.grey[200],
                   title: Text(
-                    "Edit Username",
+                    "Change Username",
                     style: TextStyle(
                       color: Colors.black,
                     ),

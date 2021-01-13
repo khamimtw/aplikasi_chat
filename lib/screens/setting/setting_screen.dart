@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SettingScreen extends StatefulWidget {
+  static final String routeName = '/setting';
+
   @override
   _SettingScreenState createState() => _SettingScreenState();
 }
@@ -109,7 +111,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 iconSize: 35,
                 color: Colors.blueGrey,
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, 'home');
+                  Navigator.pushReplacementNamed(context, '/home');
                 },
               ),
               IconButton(

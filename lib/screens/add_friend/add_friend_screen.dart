@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AddFriendScreen extends StatefulWidget {
+  static final String routeName = '/add_friend';
+
   @override
   _AddFriendScreenState createState() => _AddFriendScreenState();
 }

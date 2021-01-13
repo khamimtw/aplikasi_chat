@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
+  static final String routeName = '/home';
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -147,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 iconSize: 35,
                 color: Colors.blueGrey,
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, 'setting');
+                  Navigator.pushReplacementNamed(context, '/setting');
                 },
               ),
             ],
