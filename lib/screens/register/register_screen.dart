@@ -1,5 +1,6 @@
 import 'package:aplikasi_chat/size_config.dart';
-import 'package:aplikasi_chat/widgets/auth.dart';
+import 'package:aplikasi_chat/widgets/my_button.dart';
+import 'package:aplikasi_chat/widgets/my_text_field.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -66,31 +67,33 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   SizedBox(
                     height: 25,
                   ),
-                  buildTextFieldAuth('Username'),
+                  MyTextField(hint: 'Username'),
                   SizedBox(
                     height: 20,
                   ),
-                  buildTextFieldAuth('Email'),
+                  MyTextField(hint: 'Email'),
                   SizedBox(
                     height: 20,
                   ),
-                  buildTextFieldAuth(
-                    'Password',
-                    obscureText: true,
+                  MyTextField(
+                    hint: 'Password',
+                    obscure: true,
                   ),
                   SizedBox(
                     height: 20,
                   ),
-                  buildTextFieldAuth(
-                    'Confirm password',
-                    obscureText: true,
+                  MyTextField(
+                    hint: 'Confirm password',
+                    obscure: true,
                   ),
                   SizedBox(
                     height: 50,
                   ),
-                  buildButtonAuth('Sign up', () {
-                    Navigator.pushNamed(context, 'add_friend');
-                  }),
+                  MyButton(
+                      title: 'Sign up',
+                      onTap: () {
+                        Navigator.pushNamed(context, 'add_friend');
+                      }),
                   SizedBox(
                     height: 50,
                   ),

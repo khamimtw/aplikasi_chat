@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:aplikasi_chat/routes.dart';
 
-class ChatsPage extends StatefulWidget {
+class ChatScreen extends StatefulWidget {
   static final String routeName = '/chats';
   @override
-  _ChatsPageState createState() => _ChatsPageState();
+  _ChatScreenState createState() => _ChatScreenState();
 }
 
-class _ChatsPageState extends State<ChatsPage> {
+class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

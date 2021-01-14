@@ -1,5 +1,5 @@
-import 'package:aplikasi_chat/screens/register/register_screen.dart';
-import 'package:aplikasi_chat/widgets/auth.dart';
+import 'package:aplikasi_chat/widgets/my_button.dart';
+import 'package:aplikasi_chat/widgets/my_text_field.dart';
 import 'package:flutter/material.dart';
 import '../../size_config.dart';
 
@@ -67,11 +67,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     height: 25,
                   ),
-                  buildTextFieldAuth('Username'),
+                  MyTextField(hint: 'Username'),
                   SizedBox(
                     height: 20,
                   ),
-                  buildTextFieldAuth('Password', obscureText: true),
+                  MyTextField(
+                    hint: 'Password',
+                    obscure: true,
+                  ),
                   SizedBox(
                     height: 20,
                   ),
@@ -92,9 +95,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     height: 50,
                   ),
-                  buildButtonAuth('Login', () {
-                    Navigator.pushNamed(context, '/home');
-                  }),
+                  MyButton(
+                      title: 'Login',
+                      onTap: () {
+                        Navigator.pushNamed(context, '/home');
+                      }),
                   SizedBox(
                     height: 50,
                   ),

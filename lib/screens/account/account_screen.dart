@@ -64,7 +64,7 @@ class _AccountScreenState extends State<AccountScreen> {
                       suffixIcon: IconButton(
                         icon: Icon(Icons.edit),
                         onPressed: () {
-                          Navigator.pushNamed(context, 'change_username');
+                          Navigator.pushNamed(context, '/change_username');
                         },
                       ),
                     ),
@@ -92,7 +92,7 @@ class _AccountScreenState extends State<AccountScreen> {
                       suffixIcon: IconButton(
                         icon: Icon(Icons.edit),
                         onPressed: () {
-                          Navigator.pushNamed(context, 'change_username');
+                          Navigator.pushNamed(context, '/change_username');
                         },
                       ),
                     ),
@@ -115,7 +115,7 @@ class _AccountScreenState extends State<AccountScreen> {
                       suffixIcon: IconButton(
                         icon: Icon(Icons.edit),
                         onPressed: () {
-                          Navigator.pushNamed(context, 'change_password');
+                          Navigator.pushNamed(context, '/change_password');
                         },
                       ),
                     ),

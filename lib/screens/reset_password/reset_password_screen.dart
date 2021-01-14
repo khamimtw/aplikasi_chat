@@ -1,5 +1,6 @@
 import 'package:aplikasi_chat/size_config.dart';
-import 'package:aplikasi_chat/widgets/auth.dart';
+import 'package:aplikasi_chat/widgets/my_button.dart';
+import 'package:aplikasi_chat/widgets/my_text_field.dart';
 import 'package:flutter/material.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
@@ -66,11 +67,11 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 SizedBox(
                   height: 25,
                 ),
-                buildTextFieldAuth('Email'),
+                MyTextField(hint: 'Email'),
                 SizedBox(
                   height: 50,
                 ),
-                buildButtonAuth('Reset password', () {})
+                MyButton(title: 'Reset password', onTap: () {})
               ],
             ),
           ),
