@@ -26,3 +26,24 @@ class MyTextField extends StatelessWidget {
     );
   }
 }
+
+Widget buildTextAlamatFieldAuth(String hintText,
+    {bool obscureText = false, TextEditingController controller}) {
+  return TextField(
+    cursorColor: Colors.black,
+    style: TextStyle(color: Colors.black),
+    controller: controller ?? null,
+    obscureText: obscureText,
+    minLines: 2,
+    maxLines: 4,
+    decoration: InputDecoration(
+      counter: Offstage(),
+      hintText: '  $hintText',
+      hintStyle: TextStyle(
+          fontSize: 15,
+          letterSpacing: 1.5,
+          color: Colors.black54,
+          fontWeight: FontWeight.w900),
+    ),
+  );
+}

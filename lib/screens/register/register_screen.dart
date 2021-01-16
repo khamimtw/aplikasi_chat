@@ -11,6 +11,9 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  String _valGender;
+  List _listGender = ["Laki-Laki", "Perempuan"];
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -72,6 +75,35 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     height: 20,
                   ),
                   MyTextField(hint: 'Email'),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  buildTextAlamatFieldAuth("Alamat"),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  DropdownButtonFormField(
+                    hint: Text(
+                      "  Kelamin",
+                      style: TextStyle(
+                          fontSize: 15,
+                          letterSpacing: 1.5,
+                          color: Colors.black54,
+                          fontWeight: FontWeight.w900),
+                    ),
+                    value: _valGender,
+                    items: _listGender.map((value) {
+                      return DropdownMenuItem(
+                        child: Text(value),
+                        value: value,
+                      );
+                    }).toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        _valGender = value;
+                      });
+                    },
+                  ),
                   SizedBox(
                     height: 20,
                   ),
