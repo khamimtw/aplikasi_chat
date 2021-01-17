@@ -35,7 +35,51 @@ class ProfileScreen extends StatelessWidget {
               child: TextField(
                 decoration: InputDecoration(
                   border: InputBorder.none,
-                  hintText: 'Input Name here',
+                  hintText: 'Nama',
+                ),
+              ),
+            ),
+            Divider(
+              height: 0,
+              indent: 30,
+              endIndent: 30,
+              color: Colors.black,
+              thickness: 1.5,
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Padding(
+                padding: EdgeInsets.only(bottom: 20),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30),
+              child: TextField(
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: 'Alamat',
+                ),
+              ),
+            ),
+            Divider(
+              height: 0,
+              indent: 30,
+              endIndent: 30,
+              color: Colors.black,
+              thickness: 1.5,
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Padding(
+                padding: EdgeInsets.only(bottom: 20),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30),
+              child: TextField(
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: 'Email',
                 ),
               ),
             ),

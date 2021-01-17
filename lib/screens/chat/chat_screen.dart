@@ -18,8 +18,7 @@ class _ChatScreenState extends State<ChatScreen> {
             color: Colors.black,
           ),
           onPressed: () {
-            Navigator.pushNamedAndRemoveUntil(
-                context, 'home', ModalRoute.withName('setting'));
+            Navigator.pushReplacementNamed(context, '/home');
           },
         ),
         title: Text(
@@ -30,17 +29,36 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Container(
-            child: Column(
-              children: <Widget>[],
-            ),
+          Row(
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.only(top: 8.0, bottom: 8.0),
+                padding: EdgeInsets.symmetric(horizontal: 25.0, vertical: 15.0),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).accentColor,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(15.0),
+                    bottomLeft: Radius.circular(15.0),
+                    topRight: Radius.circular(15.0),
+                    bottomRight: Radius.circular(15.0),
+                  ),
+                ),
+                child: Text(
+                  "Hello world",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+              IconButton(icon: new Icon(Icons.cancel), onPressed: null),
+              IconButton(icon: new Icon(Icons.delete), onPressed: null),
+            ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Container(
-                width: 325,
+                width: 300,
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                 child: TextField(
                   decoration: InputDecoration(
@@ -51,6 +69,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   ),
                 ),
               ),
+              IconButton(icon: new Icon(Icons.send), onPressed: null),
             ],
           )
         ],

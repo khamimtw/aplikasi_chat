@@ -82,7 +82,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 fontWeight: FontWeight.w600, letterSpacing: 0.5, fontSize: 18),
           ),
           Spacer(),
-          IconButton(icon: Icon(Icons.chat), onPressed: () {})
+          IconButton(
+              icon: Icon(Icons.chat),
+              onPressed: () {
+                Navigator.pushNamed(context, '/chats');
+              })
         ],
       ),
     );
