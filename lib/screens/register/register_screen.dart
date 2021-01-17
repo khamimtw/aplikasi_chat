@@ -210,6 +210,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           return null;
                         }
 
+                        _isLoading = true;
+
                         _handleRegister(
                             _usernameController.text,
                             _emailController.text,
