@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:aplikasi_chat/constans.dart';
+import 'package:aplikasi_chat/screens/home/home_screen.dart';
 import 'package:aplikasi_chat/widgets/my_button.dart';
 import 'package:aplikasi_chat/widgets/my_text_field.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +37,9 @@ class _LoginScreenState extends State<LoginScreen> {
           _isLoading = false;
         });
         prefs.setString('token', jsonResponse['token']);
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (BuildContext context) => HomeScreen()),
+            (route) => false);
       }
 
       if (jsonResponse != null && response.statusCode == 400) {
@@ -147,7 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   MyButton(
                       title: 'Login',
                       onTap: () {
-                        if (_usernameController.text == '' ||
+                        if (_usernameController.text == '' &&
                             _passwordController.text == '') {
                           return null;
                         }
