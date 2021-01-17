@@ -1,7 +1,12 @@
+import 'dart:convert';
+
+import 'package:aplikasi_chat/constans.dart';
 import 'package:aplikasi_chat/widgets/my_button.dart';
 import 'package:aplikasi_chat/widgets/my_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../size_config.dart';
+import 'package:http/http.dart' as http;
 
 class LoginScreen extends StatefulWidget {
   static final String routeName = '/login';
@@ -11,6 +16,63 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController _usernameController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
+  bool _isLoading = false;
+
+  _handleLogin(String username, String password, BuildContext context) async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      Map<String, String> body = {'username': username, 'password': password};
+
+      var response = await http.post('$apiUrl/auth/login', body: body);
+      var jsonResponse = jsonDecode(response.body);
+      print('STatus ${response.statusCode}');
+      print(jsonResponse);
+
+      if (jsonResponse != null && response.statusCode == 200) {
+        setState(() {
+          _isLoading = false;
+        });
+        prefs.setString('token', jsonResponse['token']);
+      }
+
+      if (jsonResponse != null && response.statusCode == 400) {
+        setState(() {
+          _isLoading = false;
+        });
+
+        _showAlertDialog('Gagal!', jsonResponse['message'], context);
+      }
+    } catch (e) {
+      _showAlertDialog('Terjadi Kesalahan!', e.toString(), context);
+    }
+  }
+
+  _showAlertDialog(String title, String content, BuildContext context) {
+    Widget okButton = FlatButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+
+    AlertDialog alert = AlertDialog(
+      title: Text(title),
+      content: Text(content),
+      actions: [
+        okButton,
+      ],
+    );
+
+    showDialog<void>(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -67,30 +129,17 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     height: 25,
                   ),
-                  MyTextField(hint: 'Username'),
+                  MyTextField(
+                    hint: 'Username',
+                    controller: _usernameController,
+                  ),
                   SizedBox(
                     height: 20,
                   ),
                   MyTextField(
                     hint: 'Password',
                     obscure: true,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, '/reset_password');
-                        // Navigator.of(context).pushNamed('/reset_password');
-                      },
-                      child: Text(
-                        'Forgot Password',
-                        style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.w400),
-                      ),
-                    ),
+                    controller: _passwordController,
                   ),
                   SizedBox(
                     height: 50,
@@ -98,42 +147,58 @@ class _LoginScreenState extends State<LoginScreen> {
                   MyButton(
                       title: 'Login',
                       onTap: () {
-                        Navigator.pushNamed(context, '/home');
+                        if (_usernameController.text == '' ||
+                            _passwordController.text == '') {
+                          return null;
+                        }
+
+                        setState(() {
+                          _isLoading = true;
+                        });
+
+                        print(_usernameController.text);
+
+                        _handleLogin(_usernameController.text,
+                            _passwordController.text, context);
+                        // Navigator.pushNamed(context, '/home');
                       }),
                   SizedBox(
                     height: 50,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        "Want to start chatting ?",
-                        style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.w400),
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, '/register');
-                        },
-                        child: Text(
-                          'Sign up, it is free!',
-                          style: TextStyle(
-                              //  decoration: TextDecoration.underline,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black),
-                        ),
-                      ),
-                    ],
-                  )
+                  _buildRegisterSectionWidget()
                 ],
               ),
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildRegisterSectionWidget() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Text(
+          "Want to start chatting ?",
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.w400),
+        ),
+        SizedBox(
+          width: 5,
+        ),
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, '/register');
+          },
+          child: Text(
+            'Sign up, it is free!',
+            style: TextStyle(
+                //  decoration: TextDecoration.underline,
+                fontWeight: FontWeight.w500,
+                color: Colors.black),
+          ),
+        ),
+      ],
     );
   }
 }
