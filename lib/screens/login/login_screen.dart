@@ -2,10 +2,10 @@ import 'dart:convert';
 
 import 'package:aplikasi_chat/constans.dart';
 import 'package:aplikasi_chat/screens/home/home_screen.dart';
+import 'package:aplikasi_chat/utils/custom_shared_preferences.dart';
 import 'package:aplikasi_chat/widgets/my_button.dart';
 import 'package:aplikasi_chat/widgets/my_text_field.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../size_config.dart';
 import 'package:http/http.dart' as http;
 
@@ -24,20 +24,18 @@ class _LoginScreenState extends State<LoginScreen> {
 
   _handleLogin(String username, String password, BuildContext context) async {
     try {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
       Map<String, String> body = {'username': username, 'password': password};
 
       var response = await http.post('$apiUrl/auth/login', body: body);
       var jsonResponse = jsonDecode(response.body);
-      print('STatus ${response.statusCode}');
-      print(jsonResponse);
 
       if (jsonResponse != null && response.statusCode == 200) {
         setState(() {
           _isLoading = false;
         });
-        prefs.setString('token', jsonResponse['token']);
-        prefs.setString('user', jsonEncode(jsonResponse));
+
+        await CustomSharedPreferences.setString('user', response.body);
+
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (BuildContext context) => HomeScreen()),
             (route) => false);

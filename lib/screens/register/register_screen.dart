@@ -49,7 +49,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
           _isLoading = false;
         });
 
-        _showAlertDialog(jsonResponse['message'], 'Silahkan Login', context);
+        await _showAlertDialog(
+            jsonResponse['message'], 'Silahkan Login', context);
 
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (BuildContext context) => LoginScreen()),

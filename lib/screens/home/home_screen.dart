@@ -1,5 +1,8 @@
+import 'package:aplikasi_chat/size_config.dart';
+import 'package:aplikasi_chat/utils/custom_shared_preferences.dart';
+import 'package:aplikasi_chat/widgets/my_app_bar.dart';
+import 'package:aplikasi_chat/widgets/my_drawer.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
   static final String routeName = '/home';
@@ -12,163 +15,75 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   initState() {
     super.initState();
-    getUser();
+    print(_getUser());
   }
 
-  getUser() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    print('Token : ${prefs.getString('user')}');
+  _getUser() async {
+    String user = await CustomSharedPreferences.getUser('user');
+    return user;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        color: Colors.white,
-        child: Column(
-          children: <Widget>[
-            SafeArea(
-              // Agar tidak konflik dengan status bar default android diatas
-              minimum: EdgeInsets.fromLTRB(20, 30, 0, 0),
-              child: Row(
-                children: <Widget>[
-                  CircleAvatar(
-                    child: Icon(Icons.person),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    'Chats',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1,
-                        fontSize: 17.5),
-                  ),
-                  Spacer(),
-                  IconButton(
-                    icon: Icon(
-                      Icons.add_circle,
-                      color: Colors.grey,
-                      size: 45,
-                    ),
-                    padding: EdgeInsets.only(right: 40),
-                    onPressed: () {
-                      Navigator.pushReplacementNamed(context, '/chats');
-                    },
-                  )
-                ],
+      backgroundColor: Colors.white,
+      drawer: MyDrawer(_getUser()),
+      appBar: MyAppBar(),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.only(
+            top: getProportionateScreenHeight(20),
+          ),
+          child: Column(
+            children: [
+              Container(
+                child: Text('Users Online'),
               ),
-            ),
-            Container(
-              // Search Bar
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(20, 15, 20, 20),
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(20))),
-                    hintText: 'Search',
-                    contentPadding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                    filled: true,
-                    fillColor: Color(0xfff1f1f1),
-                  ),
-                ),
-              ),
-            ),
-            // Highlight pesan
-            Container(
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                child: Row(
-                  children: <Widget>[
-                    CircleAvatar(
-                      child: Icon(Icons.person),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Person Name',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 0.5,
-                              fontSize: 17.5),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          'Content of the chats',
-                          style: TextStyle(
-                            letterSpacing: 0.5,
-                            fontSize: 15,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Spacer(),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: <Widget>[
-                        Text(
-                          '11:45 AM',
-                          style: TextStyle(
-                            fontSize: 15,
-                            color: Color(0xff6c63fe),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        CircleAvatar(
-                          child: Text('3'),
-                          radius: 10,
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Divider(
-              height: 30,
-              endIndent: 20,
-              indent: 20,
-              color: Colors.black,
-            ),
-          ],
-        ),
-      ),
-      // Bar dibawah
-      bottomNavigationBar: BottomAppBar(
-        child: SafeArea(
-          minimum: EdgeInsets.only(bottom: 10, top: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              IconButton(
-                icon: Icon(Icons.chat),
-                iconSize: 35,
-                color: Colors.blueGrey,
-                onPressed: () {},
-              ),
-              IconButton(
-                icon: Icon(Icons.settings),
-                iconSize: 35,
-                color: Colors.blueGrey,
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/setting');
-                },
-              ),
+              SizedBox(height: 20),
+              Container(
+                  width: SizeConfig.screenWidth,
+                  height: SizeConfig.screenHeight,
+                  child: ListView.separated(
+                      itemBuilder: (context, index) {
+                        return _buildContactItemWidget();
+                      },
+                      separatorBuilder: (context, index) {
+                        return Divider(
+                          color: Colors.grey,
+                        );
+                      },
+                      itemCount: 20)),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildContactItemWidget() {
+    return Container(
+      padding: EdgeInsets.symmetric(
+          horizontal: getProportionateScreenWidth(15),
+          vertical: getProportionateScreenHeight(5)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          CircleAvatar(
+            child: Icon(
+              Icons.person,
+            ),
+          ),
+          SizedBox(
+            width: 20,
+          ),
+          Text(
+            'Person Name',
+            style: TextStyle(
+                fontWeight: FontWeight.w600, letterSpacing: 0.5, fontSize: 18),
+          ),
+          Spacer(),
+          IconButton(icon: Icon(Icons.chat), onPressed: () {})
+        ],
       ),
     );
   }
