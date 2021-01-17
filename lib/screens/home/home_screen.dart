@@ -10,11 +10,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
-  Future<void> initState() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    print('Token : ${prefs.getString('token')}');
-
+  initState() {
     super.initState();
+    getUser();
+  }
+
+  getUser() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    print('Token : ${prefs.getString('user')}');
   }
 
   @override

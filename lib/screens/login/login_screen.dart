@@ -37,6 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
           _isLoading = false;
         });
         prefs.setString('token', jsonResponse['token']);
+        prefs.setString('user', jsonEncode(jsonResponse));
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (BuildContext context) => HomeScreen()),
             (route) => false);
