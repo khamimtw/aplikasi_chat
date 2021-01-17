@@ -5,7 +5,6 @@ import 'package:aplikasi_chat/size_config.dart';
 import 'package:aplikasi_chat/widgets/my_button.dart';
 import 'package:aplikasi_chat/widgets/my_text_field.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 import '../../constans.dart';
@@ -46,11 +45,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
           _isLoading = false;
         });
 
-        showAlertDialog(registerResponse['message'], 'Silahkan Login', context);
-
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (BuildContext context) => LoginScreen()),
-            (route) => false);
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text('Info'),
+                content: Text("Registrasi berhasil! Silahkan Login"),
+                actions: [
+                  FlatButton(
+                    child: Text("OK"),
+                    onPressed: () {
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => LoginScreen()),
+                          (route) => false);
+                    },
+                  )
+                ],
+              );
+            });
       }
 
       if (registerResponse != null && response.statusCode == 500) {

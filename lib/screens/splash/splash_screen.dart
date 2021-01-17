@@ -1,4 +1,3 @@
-import 'package:aplikasi_chat/screens/chat/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:aplikasi_chat/screens/login/login_screen.dart';
 import 'dart:async';

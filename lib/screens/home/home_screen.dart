@@ -4,6 +4,7 @@ import 'package:aplikasi_chat/screens/login/login_screen.dart';
 import 'package:aplikasi_chat/screens/profile/profile_screen.dart';
 import 'package:aplikasi_chat/size_config.dart';
 import 'package:aplikasi_chat/utils/custom_shared_preferences.dart';
+import 'package:aplikasi_chat/widgets/body_loading.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -15,65 +16,62 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   User user;
-  bool _isLoading = true;
+  bool _isLoading;
 
   @override
   initState() {
-    super.initState();
-    getUser();
-  }
+    if (user == null) {
+      setState(() {
+        _isLoading = true;
+      });
+    }
 
-  getUser() async {
-    user = await CustomSharedPreferences.getMyUser();
-    setState(() {
-      _isLoading = false;
+    CustomSharedPreferences.getMyUser().then((value) {
+      user = value;
+      setState(() {
+        _isLoading = false;
+      });
     });
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    if (user == null && _isLoading == true) {
-      return Scaffold(
-        backgroundColor: Colors.white,
-        body: Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
-    }
-
     return Scaffold(
       backgroundColor: Colors.white,
-      drawer: _buildDrawer(),
+      drawer: user == null && _isLoading ? null : _buildDrawerWidget(),
       appBar: AppBar(
         title: Text('Zippo Chat'),
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.only(
-            top: getProportionateScreenHeight(20),
-          ),
-          child: Column(
-            children: [
-              Container(
-                child: Text('Users Online'),
+        child: user == null && _isLoading
+            ? BodyLoading()
+            : Padding(
+                padding: EdgeInsets.only(
+                  top: getProportionateScreenHeight(20),
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      child: Text('Users Online'),
+                    ),
+                    SizedBox(height: 20),
+                    Container(
+                        width: SizeConfig.screenWidth,
+                        height: SizeConfig.screenHeight,
+                        child: ListView.separated(
+                            itemBuilder: (context, index) {
+                              return _buildUserOnline();
+                            },
+                            separatorBuilder: (context, index) {
+                              return Divider(
+                                color: Colors.grey,
+                              );
+                            },
+                            itemCount: 20)),
+                  ],
+                ),
               ),
-              SizedBox(height: 20),
-              Container(
-                  width: SizeConfig.screenWidth,
-                  height: SizeConfig.screenHeight,
-                  child: ListView.separated(
-                      itemBuilder: (context, index) {
-                        return _buildUserOnline();
-                      },
-                      separatorBuilder: (context, index) {
-                        return Divider(
-                          color: Colors.grey,
-                        );
-                      },
-                      itemCount: 20)),
-            ],
-          ),
-        ),
       ),
     );
   }
@@ -111,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildDrawer() {
+  Widget _buildDrawerWidget() {
     return Drawer(
       child: ListView(
         children: <Widget>[
@@ -146,8 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
             title: Text('Profile'),
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) =>
-                      ProfileScreen(user.username, user.email, user.alamat)));
+                  builder: (BuildContext context) => ProfileScreen()));
             },
           ),
           ListTile(
